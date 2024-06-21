@@ -4,7 +4,7 @@ dotenv.config();
 
 import morgan from 'morgan';
 import express from 'express';
-// import router from './routes/routes';
+import router from './routes/routes';
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 });
 
 //Routes
-// app.use('/api', router);
+app.use('/api', router);
 
 app.get('/', (req, res) => {
     res.status(200).send('Server is operational!');
