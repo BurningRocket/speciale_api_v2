@@ -7,7 +7,10 @@ const blingService = new BlingService();
 
 router.get('/produtos', async (req, res) => {
     try {
-        const response = await blingService.getProdutos();
+        const page = req.query.page ? parseInt(req.query.page as string) : 1;
+        const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
+
+        const response = await blingService.getProdutos(page, limit);
         res.json(response.data);
     } catch (error: any) {
         res.status(500).json({message: error.message});
@@ -26,6 +29,27 @@ router.get('/produtos/:id', async (req, res) => {
 router.get('/produtos/categoria/:categoriaId', async (req, res) => {
     try {
         const response = await blingService.getProdutosByCategoria(req.params.categoriaId);
+        res.json(response.data);
+    } catch (error: any) {
+        res.status(500).json({message: error.message});
+    }
+});
+
+router.get('/categorias', async (req, res) => {
+    try {
+        const page = req.query.page ? parseInt(req.query.page as string) : 1;
+        const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
+
+        const response = await blingService.getCategorias(page, limit);
+        res.json(response.data);
+    } catch (error: any) {
+        res.status(500).json({message: error.message});
+    }
+});
+
+router.get('/categorias/:id', async (req, res) => {
+    try {
+        const response = await blingService.getCategoriaById(req.params.id);
         res.json(response.data);
     } catch (error: any) {
         res.status(500).json({message: error.message});

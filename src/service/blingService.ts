@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {CategoriaProduto} from '../models/categoriaProduto';
 
 export class BlingService {
     constructor() {}
@@ -16,8 +17,8 @@ export class BlingService {
         };
     }
 
-    async getProdutos() {
-        const config = this.getAxiosConfig('https://bling.com.br/Api/v3/produtos');
+    async getProdutos(page: number = 1, limit: number = 10) {
+        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?pagina=${page}&limite=${limit}`);
         return await axios.request(config);
     }
 
@@ -31,5 +32,14 @@ export class BlingService {
         return await axios.request(config);
     }
 
+    async getCategorias(page: number = 1, limit: number = 10) {
+        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/categorias/produtos?pagina=${page}&limite=${limit}`);
+        return await axios.request(config);
+    }
+
+    async getCategoriaById(id: string) {
+        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/categorias/produtos/${id}`);
+        return await axios.request(config);
+    }
 
 }
