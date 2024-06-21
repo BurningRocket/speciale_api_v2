@@ -11,14 +11,12 @@ const pdfService = new PdfService();
 router.post('/pdf', async (req, res) => {
     try {
         const orcamentoPayload = req.body;
-        const produtosId = orcamentoPayload.produtos.map((produto: any) => produto.id);
+        // const produtosId = orcamentoPayload.produtos.map((produto: any) => produto.id);
+        //
+        // const response = await blingService.getProdutosByIds(produtosId);
+        // const produtos = response.data;
 
-        const response = await blingService.getProdutosByIds(produtosId);
-        const produtos = response.data;
-
-        const pdf = await pdfService.createPdf(produtos.data, orcamentoPayload);
-
-        console.log(pdf);
+        const pdf = await pdfService.createPdf(orcamentoPayload.produtos, orcamentoPayload);
 
         res.send(pdf);
     } catch (error: any) {

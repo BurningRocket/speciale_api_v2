@@ -1,7 +1,7 @@
 export interface BlingReturnProduct {
-  codigo: string;
+  id: string;
   quantidade: number;
   preco: number;
-  descricao: string;
+  nome: string;
   estoqueAtual: number;
 }

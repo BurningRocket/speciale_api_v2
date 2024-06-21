@@ -16,8 +16,8 @@ export class PdfService {
 
     const itens = blingProducts.map(produto => {
       return `<tr>
-                <td style="word-break: break-all;">${produto.descricao}</td>
-                <td class="left" style="white-space: nowrap;">${produto.codigo}</td>
+                <td style="word-break: break-all;">${produto.nome}</td>
+                <td class="left" style="white-space: nowrap;">${produto.id}</td>
                 <td class="right">UN</td>
                 <td class="right">${produto.quantidade}</td>
                 <td class="right">${this.formatter.format(produto.preco).replace(/^(\D+)/, '$1 ').replace(/\s+/, ' ')}</td>
