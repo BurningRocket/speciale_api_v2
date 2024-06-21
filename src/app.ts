@@ -5,6 +5,7 @@ dotenv.config();
 import morgan from 'morgan';
 import express from 'express';
 import router from './routes/routes';
+import cors from 'cors';
 
 const app = express();
 
@@ -14,20 +15,22 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 // Takes care of JSON data
 app.use(express.json());
+// CORS
+app.use(cors());
 
-// RULES OF OUR API
-app.use((req, res, next) => {
-    // set the CORS policy
-    res.header('Access-Control-Allow-Origin', '*');
-    // set the CORS headers
-    res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
-    // set the CORS method headers
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST');
-        return res.status(200).json({});
-    }
-    next();
-});
+// // RULES OF OUR API
+// app.use((req, res, next) => {
+//     // set the CORS policy
+//     res.header('Access-Control-Allow-Origin', '*');
+//     // set the CORS headers
+//     res.header('Access-Control-Allow-Headers', 'origin, X-Requested-With,Content-Type,Accept, Authorization');
+//     // set the CORS method headers
+//     if (req.method === 'OPTIONS') {
+//         res.header('Access-Control-Allow-Methods', 'GET PATCH DELETE POST');
+//         return res.status(200).json({});
+//     }
+//     next();
+// });
 
 //Routes
 app.use('/api', router);

@@ -19,12 +19,16 @@ export class BlingService {
 
     async getProdutos(page: number = 1, limit: number = 10) {
         const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?pagina=${page}&limite=${limit}`);
-        console.log(config)
         return await axios.request(config);
     }
 
     async getProdutoById(id: string) {
         const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?idsProdutos[]=${id}`);
+        return await axios.request(config);
+    }
+
+    async getProdutosByIds(ids: string[]) {
+        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?idsProdutos[]=${ids.join('&idsProdutos[]=')}`);
         return await axios.request(config);
     }
 
