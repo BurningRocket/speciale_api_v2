@@ -1,0 +1,43 @@
+{
+  "name": "speciale_api_v2",
+  "version": "1.0.0",
+  "description": "Api para speciale atualizado para versões atuais",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "nodemon src/server.ts",
+    "build": "rimraf ./build && tsc",
+    "start": "npm run build && node build/server.js",
+    "deploy": "serverless deploy --aws-profile aws_burning_rocket"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BurningRocket/speciale_api_v2.git"
+  },
+  "author": "BurningRocket",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BurningRocket/speciale_api_v2/issues"
+  },
+  "homepage": "https://github.com/BurningRocket/speciale_api_v2#readme",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.21",
+    "@types/morgan": "^1.9.9",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "form-data": "^4.0.0",
+    "html-pdf-node": "^1.0.8",
+    "morgan": "^1.10.0",
+    "serverless-http": "^3.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.2",
+    "rimraf": "^5.0.7",
+    "serverless": "^3.38.0",
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-plugin-typescript": "^2.1.5"
+  }
+}
