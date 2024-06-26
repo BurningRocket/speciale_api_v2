@@ -32,8 +32,13 @@ export class BlingService {
         return await axios.request(config);
     }
 
-    async getProdutosByCategoria(categoriaId: string) {
-        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?idCategoria=${categoriaId}`);
+    async getProdutosByNome(nome: string, page: number = 1, limit: number = 10) {
+        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?nome=${nome}`);
+        return await axios.request(config)
+    }
+
+    async getProdutosByCategoria(categoriaId: string, page: number = 1, limit: number = 10) {
+        const config = this.getAxiosConfig(`https://bling.com.br/Api/v3/produtos?idCategoria=${categoriaId}?pagina=${page}&limite=${limit}`);
         return await axios.request(config);
     }
 

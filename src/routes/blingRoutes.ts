@@ -17,6 +17,19 @@ router.get('/produtos', async (req, res) => {
     }
 });
 
+router.get('/produtos/nome/:nome', async (req, res) => {
+    try {
+        const page = req.query.page ? parseInt(req.query.page as string) : 1;
+        const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
+        const nome = req.params.nome ? req.params.nome : '';
+
+        const response = await blingService.getProdutosByNome(nome, page, limit);
+        res.json(response.data);
+    } catch (error: any) {
+        res.status(500).json({message: error.message});
+    }
+});
+
 router.get('/produtos/:id', async (req, res) => {
     try {
         const response = await blingService.getProdutoById(req.params.id);
@@ -26,9 +39,13 @@ router.get('/produtos/:id', async (req, res) => {
     }
 });
 
+
 router.get('/produtos/categoria/:categoriaId', async (req, res) => {
     try {
-        const response = await blingService.getProdutosByCategoria(req.params.categoriaId);
+        const page = req.query.page ? parseInt(req.query.page as string) : 1;
+        const limit = req.query.limit ? parseInt(req.query.limit as string) : 10;
+
+        const response = await blingService.getProdutosByCategoria(req.params.categoriaId, page, limit);
         res.json(response.data);
     } catch (error: any) {
         res.status(500).json({message: error.message});
